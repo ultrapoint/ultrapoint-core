@@ -51,7 +51,7 @@
 
 // MONEY_SUPPLY - total number coins to be generated
 #define MONEY_SUPPLY                                    ((uint64_t)(-1))
-#define EMISSION_SPEED_FACTOR_PER_MINUTE                (9)
+#define EMISSION_SPEED_FACTOR_PER_MINUTE                (11)
 #define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)5000000000) // 2 * pow(10, 9)
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
@@ -151,7 +151,7 @@ namespace config
   boost::uuids::uuid const NETWORK_ID = { {
       0x13, 0x33, 0xF3, 0x73 , 0x93, 0x03 , 0x43, 0x93, 0x13, 0x33, 0x03, 0x83, 0x13, 0xA3, 0xA3, 0x13
     } };
-  std::string const GENESIS_TX = "013c01ff0001ffffffffffffff3f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101649fae6e8b67d78a10a5c55ef34798c57167dd157588cb4c392649ebab1443f2";
+  std::string const GENESIS_TX = "013c01ff0001ffffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210190c7df8a01cd09d97e1fa6f193407ed6dedcc2f4ceac26b31ebfc716efed0963";
   uint32_t const GENESIS_NONCE = 10000;
 
   namespace testnet
@@ -163,7 +163,7 @@ namespace config
     boost::uuids::uuid const NETWORK_ID = { {
         0x12 ,0x32, 0xF2, 0x72 , 0x92, 0x02 , 0x42, 0x92, 0x12, 0x32, 0x02, 0x82, 0x12, 0xA2, 0xA2, 0x12
     } };
-    std::string const GENESIS_TX = "013c01ff0001ffffffffffffff3f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101813955c107c243947d094f532495f92dbce039656060e3b77818568708c5e4f3";
+    std::string const GENESIS_TX = "013c01ff0001ffffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016b95dc542ea5c475b4782b4fdc3c143389f381741e3cdc4570d48392a7086b92";
     uint32_t const GENESIS_NONCE = 10001;
   }
 }
