@@ -53,7 +53,7 @@
 #define MONEY_SUPPLY                                    ((uint64_t)(-1))
 #define EMISSION_SPEED_FACTOR_PER_MINUTE                (11)
 #define PREMINE_PERCENTAGE                              (100) // 100%
-#define PREMINE_BLOCK_HEIGHT                            (512) // recommended to be < or = to `MONEY_SUPPLY / (MONEY_SUPPLY * 2^(- EMISSION_SPEED_FACTOR_PER_MINUTE))`
+#define PREMINE_BLOCK_HEIGHT                            (32) // recommended to be < or = to `MONEY_SUPPLY / (MONEY_SUPPLY * 2^(- EMISSION_SPEED_FACTOR_PER_MINUTE))`
 #define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)5000000000) // 2 * pow(10, 9)
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
