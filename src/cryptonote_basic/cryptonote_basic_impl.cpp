@@ -105,6 +105,7 @@ namespace cryptonote {
     }
 
     // no reward on genesis block and after max supply that can be emitted
+    //@TODO:ULTRAPOINT check why genesis transaction output amount is not 0 !!!
     if (height == 0 || (base_reward + already_generated_coins) > ((uint64_t)(-1)))
       base_reward = ((uint64_t)0);
 
