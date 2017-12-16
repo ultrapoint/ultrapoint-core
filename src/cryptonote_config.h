@@ -50,7 +50,7 @@
 #define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
 
 // MONEY_SUPPLY - total number coins to be generated
-#define MONEY_SUPPLY                                    ((uint64_t)10000000000000000000)
+#define MONEY_SUPPLY                                    ((uint64_t)18000000000000000000)
 #define EMISSION_SPEED_FACTOR_PER_MINUTE                (19)
 #define PREMINE_PERCENTAGE                              (100) // 100%
 #define PREMINE_BLOCK_HEIGHT                            (32) // recommended to be < or = to `MONEY_SUPPLY / (MONEY_SUPPLY * 2^(- EMISSION_SPEED_FACTOR_PER_MINUTE))`
@@ -153,7 +153,7 @@ namespace config
   boost::uuids::uuid const NETWORK_ID = { {
       0x13, 0x33, 0xF3, 0x73 , 0x93, 0x03 , 0x43, 0x93, 0x13, 0x33, 0x03, 0x83, 0x13, 0xA3, 0xA3, 0x13
     } };
-  std::string const GENESIS_TX = "013c01ff0001bda282a38eab04029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121013240d27b307f4b55fdc887a35a326487fbc7af2060375767be0a0ff255c4cddc";
+  std::string const GENESIS_TX = "013c01ff0001a1f1d0d899e707029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121013240d27b307f4b55fdc887a35a326487fbc7af2060375767be0a0ff255c4cddc";
   uint32_t const GENESIS_NONCE = 10000;
 
   namespace testnet
@@ -165,7 +165,7 @@ namespace config
     boost::uuids::uuid const NETWORK_ID = { {
         0x12 ,0x32, 0xF2, 0x72 , 0x92, 0x02 , 0x42, 0x92, 0x12, 0x32, 0x02, 0x82, 0x12, 0xA2, 0xA2, 0x12
     } };
-    std::string const GENESIS_TX = "013c01ff0001bda282a38eab04029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016b95dc542ea5c475b4782b4fdc3c143389f381741e3cdc4570d48392a7086b92";
+    std::string const GENESIS_TX = "013c01ff0001a1f1d0d899e707029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016b95dc542ea5c475b4782b4fdc3c143389f381741e3cdc4570d48392a7086b92";
     uint32_t const GENESIS_NONCE = 10001;
   }
 }
