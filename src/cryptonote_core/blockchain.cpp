@@ -87,19 +87,19 @@ static const struct {
   time_t time;
 } mainnet_hard_forks[] = {
     // version 1 from the start of the blockchain
-    {1, 1, 0, 1509494460},
+    {1, 1, 0, 1513338000},
 
-    // version 2 starts from block 262800, which is on or around the 3rd of March, 2018. Fork time finalised on 2018-01-30. No fork voting occurs for the v2 fork.
-    {2, 262800, 0, 1520035260},
+    // version 2 starts from block 262800, which is on or around the 16th of April, 2018. Fork time finalised on 2018-03-30. No fork voting occurs for the v2 fork.
+    {2, 262800, 0, 1523878800},
 
-    // version 3 starts from block 438000, which is on or around the 3rd of june, 2018. Fork time finalised on 2018-05-15.
-    {3, 438000, 0, 1527984060},
+    // version 3 starts from block 438000, which is on or around the 17th of jully, 2018. Fork time finalised on 2018-06-30.
+    {3, 438000, 0, 1531827600},
 
-    // version 4 starts from block 613200, which is on or around the 3rd of September, 2018. Fork time finalised on 2018-08-15.
-    {4, 613200, 0, 1535932860},
+    // version 4 starts from block 613200, which is on or around the 17th of October, 2018. Fork time finalised on 2018-09-30.
+    {4, 613200, 0, 1539776400},
 
-    // version 5 starts from block 788400, which is on or around the 3rd of December, 2018. Fork time finalised on 2018-11-15.
-    {5, 788400, 0, 1543795260},
+    // version 5 starts from block 788400, which is on or around the 17th of December, 2018. Fork time finalised on 2018-11-30.
+    {5, 701040, 0, 1545046800},
 };
 static const uint64_t mainnet_hard_fork_version_1_till = 262799;
 
@@ -1003,12 +1003,12 @@ bool Blockchain::validate_miner_transaction(const block& b, size_t cumulative_bl
 
   std::vector<size_t> last_blocks_sizes;
   get_last_n_blocks_sizes(last_blocks_sizes, CRYPTONOTE_REWARD_BLOCKS_WINDOW);
-  if (!get_block_reward(epee::misc_utils::median(last_blocks_sizes), cumulative_block_size, already_generated_coins, base_reward, version))
+  if (!get_block_reward(epee::misc_utils::median(last_blocks_sizes), cumulative_block_size, already_generated_coins, base_reward, version, m_db->height()))
   {
     MERROR_VER("block size " << cumulative_block_size << " is bigger than allowed for this blockchain");
     return false;
   }
-  if(base_reward + fee < money_in_use)
+  if (m_db->height() > 0 && (base_reward + fee < money_in_use))
   {
     MERROR_VER("coinbase transaction spend too much money (" << print_money(money_in_use) << "). Block reward is " << print_money(base_reward + fee) << "(" << print_money(base_reward) << "+" << print_money(fee) << ")");
     return false;
@@ -1016,7 +1016,7 @@ bool Blockchain::validate_miner_transaction(const block& b, size_t cumulative_bl
   // From hard fork 2, we allow a miner to claim less block reward than is allowed, in case a miner wants less dust
   if (m_hardfork->get_current_version() < 2)
   {
-    if(base_reward + fee != money_in_use)
+    if (m_db->height() > 0 && (base_reward + fee != money_in_use))
     {
       MDEBUG("coinbase transaction doesn't use full amount of block reward:  spent: " << money_in_use << ",  block reward " << base_reward + fee << "(" << base_reward << "+" << fee << ")");
       return false;
@@ -1097,7 +1097,7 @@ bool Blockchain::create_block_template(block& b, const account_public_address& m
 
   size_t txs_size;
   uint64_t fee;
-  if (!m_tx_pool.fill_block_template(b, median_size, already_generated_coins, txs_size, fee, m_hardfork->get_current_version()))
+  if (!m_tx_pool.fill_block_template(b, median_size, already_generated_coins, txs_size, fee, m_hardfork->get_current_version(), height))
   {
     return false;
   }
@@ -2851,7 +2851,7 @@ bool Blockchain::check_fee(size_t blob_size, uint64_t fee) const
     uint64_t median = m_current_block_cumul_sz_limit / 2;
     uint64_t already_generated_coins = m_db->height() ? m_db->get_block_already_generated_coins(m_db->height() - 1) : 0;
     uint64_t base_reward;
-    if (!get_block_reward(median, 1, already_generated_coins, base_reward, version))
+    if (!get_block_reward(median, 1, already_generated_coins, base_reward, version, m_db->height()))
       return false;
     fee_per_kb = get_dynamic_per_kb_fee(base_reward, median, version);
   }
@@ -2892,7 +2892,7 @@ uint64_t Blockchain::get_dynamic_per_kb_fee_estimate(uint64_t grace_blocks) cons
 
   uint64_t already_generated_coins = m_db->height() ? m_db->get_block_already_generated_coins(m_db->height() - 1) : 0;
   uint64_t base_reward;
-  if (!get_block_reward(median, 1, already_generated_coins, base_reward, version))
+  if (!get_block_reward(median, 1, already_generated_coins, base_reward, version, m_db->height()))
   {
     MERROR("Failed to determine block reward, using placeholder " << print_money(BLOCK_REWARD_OVERESTIMATE) << " as a high bound");
     base_reward = BLOCK_REWARD_OVERESTIMATE;
