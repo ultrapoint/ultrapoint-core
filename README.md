@@ -1,4 +1,4 @@
-# Ultrapoint
+# Ultrapoint Core
 
 Copyright (c) 2017, The Ultrapoint Project
 
