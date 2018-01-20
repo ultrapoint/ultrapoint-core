@@ -596,12 +596,10 @@ bool simple_wallet::set_unit(const std::vector<std::string> &args/* = std::vecto
   if (unit == "up")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT;
   else if (unit == "milliup")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 2;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 3;
   else if (unit == "microup")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 4;
-  else if (unit == "nanoup")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 6;
-  else if (unit == "picoup")
+  else if (unit == "nanoup")
     decimal_point = 0;
   else
   {
