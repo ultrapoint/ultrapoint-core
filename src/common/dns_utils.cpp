@@ -339,7 +339,7 @@ const char *tr(const char *str) { return i18n_translate(str, "tools::dns_utils")
 // TODO: parse the string in a less stupid way, probably with regex
 std::string address_from_txt_record(const std::string& s)
 {
-  // @TODO:#CHARNACOIN make sure of good behavior about changed xmr to up
+  // @TODO:#ULTRAPOINT make sure of good behavior about changed xmr to upx
   // make sure the txt record has "oa1:up" and find it
   auto pos = s.find("oa1:up");
   if (pos == std::string::npos)
