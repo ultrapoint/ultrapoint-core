@@ -97,11 +97,16 @@ namespace cryptonote {
 
     if (PREMINE_PERCENTAGE > 0 && (height >= 1 && height <= PREMINE_BLOCK_HEIGHT))
     {
-      base_reward = MONEY_SUPPLY * (PREMINE_PERCENTAGE / 100) / PREMINE_BLOCK_HEIGHT;
+      // due to division behavior, this operation with float type before cast it as unit64_t
+      double premine_reward = (MONEY_SUPPLY * (PREMINE_PERCENTAGE / 100)) / PREMINE_BLOCK_HEIGHT;
+      base_reward = ((uint64_t)premine_reward);
     }
     else if (base_reward < FINAL_SUBSIDY_PER_MINUTE * target_minutes)
     {
-      base_reward = FINAL_SUBSIDY_PER_MINUTE * target_minutes;
+      // when will reached inflation emission
+      // 1upx per minute for the first month, 2upx the next three months, 3upx the next other three months and then `FINAL_SUBSIDY_PER_MINUTE` constantly.
+      uint64_t subsidy_per_minute = height < 302433 ? (height < 43233 ? ((uint64_t)1000000000) : (height < 172833 ? ((uint64_t)2000000000) : ((uint64_t)3000000000))) : FINAL_SUBSIDY_PER_MINUTE;
+      base_reward = subsidy_per_minute * target_minutes;
     }
 
     // no reward on genesis block and after max supply that can be emitted
