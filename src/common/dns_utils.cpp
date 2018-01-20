@@ -340,8 +340,8 @@ const char *tr(const char *str) { return i18n_translate(str, "tools::dns_utils")
 std::string address_from_txt_record(const std::string& s)
 {
   // @TODO:#ULTRAPOINT make sure of good behavior about changed xmr to upx
-  // make sure the txt record has "oa1:up" and find it
-  auto pos = s.find("oa1:up");
+  // make sure the txt record has "oa1:upx" and find it
+  auto pos = s.find("oa1:upx");
   if (pos == std::string::npos)
     return {};
   // search from there to find "recipient_address="
@@ -370,7 +370,7 @@ std::string address_from_txt_record(const std::string& s)
  *
  * gets the ultrapoint address from the TXT record of the DNS entry associated
  * with <url>.  If this lookup fails, or the TXT record does not contain an
- * UP address in the correct format, returns an empty string.  <dnssec_valid>
+ * UPX address in the correct format, returns an empty string.  <dnssec_valid>
  * will be set true or false according to whether or not the DNS query passes
  * DNSSEC validation.
  *
