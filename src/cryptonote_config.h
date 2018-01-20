@@ -50,11 +50,11 @@
 #define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
 
 // MONEY_SUPPLY - total number coins to be generated
-#define MONEY_SUPPLY                                    ((uint64_t)18000000000000000000)
+#define MONEY_SUPPLY                                    ((uint64_t)18100000000000000000)
 #define EMISSION_SPEED_FACTOR_PER_MINUTE                (19)
 #define PREMINE_PERCENTAGE                              (100) // 100%
 #define PREMINE_BLOCK_HEIGHT                            (32) // recommended to be < or = to `MONEY_SUPPLY / (MONEY_SUPPLY * 2^(- EMISSION_SPEED_FACTOR_PER_MINUTE))`
-#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)7000000000) // 7 * pow(10, 9)
+#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)5000000000) // 5 * pow(10, 9)
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2    60000 //size of block (bytes) after which reward for block calculated using block size
@@ -148,24 +148,24 @@ namespace config
 
   uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 37;
   uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 38;
-  uint16_t const P2P_DEFAULT_PORT = 17079;
-  uint16_t const RPC_DEFAULT_PORT = 17080;
+  uint16_t const P2P_DEFAULT_PORT = 17099;
+  uint16_t const RPC_DEFAULT_PORT = 17090;
   boost::uuids::uuid const NETWORK_ID = { {
       0x13, 0x33, 0xF3, 0x73 , 0x93, 0x03 , 0x43, 0x93, 0x13, 0x33, 0x03, 0x83, 0x13, 0xA3, 0xA3, 0x13
     } };
-  std::string const GENESIS_TX = "013c01ff0001a1f1d0d899e707029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121013240d27b307f4b55fdc887a35a326487fbc7af2060375767be0a0ff255c4cddc";
+  std::string const GENESIS_TX = "013c01ff0001d2888d9ee0ec07029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101330c3f770d89ad0b1eb0df6af0460fcb863fb3bfcf025482f56102136f4797ad";
   uint32_t const GENESIS_NONCE = 10000;
 
   namespace testnet
   {
     uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 117;
     uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 118;
-    uint16_t const P2P_DEFAULT_PORT = 27079;
-    uint16_t const RPC_DEFAULT_PORT = 27080;
+    uint16_t const P2P_DEFAULT_PORT = 27099;
+    uint16_t const RPC_DEFAULT_PORT = 27090;
     boost::uuids::uuid const NETWORK_ID = { {
         0x12 ,0x32, 0xF2, 0x72 , 0x92, 0x02 , 0x42, 0x92, 0x12, 0x32, 0x02, 0x82, 0x12, 0xA2, 0xA2, 0x12
     } };
-    std::string const GENESIS_TX = "013c01ff0001a1f1d0d899e707029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121016b95dc542ea5c475b4782b4fdc3c143389f381741e3cdc4570d48392a7086b92";
+    std::string const GENESIS_TX = "013c01ff0001d2888d9ee0ec07029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101f5c6bd1f3773d151d7958321e7850c47b171aa999f51f119ad6bb1384743af9d";
     uint32_t const GENESIS_NONCE = 10001;
   }
 }
