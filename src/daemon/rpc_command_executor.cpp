@@ -470,6 +470,7 @@ bool t_rpc_command_executor::print_connections() {
 
   tools::msg_writer() << std::setw(30) << std::left << "Remote Host"
       << std::setw(20) << "Peer id"
+      << std::setw(20) << "Support Flags"      
       << std::setw(30) << "Recv/Sent (inactive,sec)"
       << std::setw(25) << "State"
       << std::setw(20) << "Livetime(sec)"
@@ -1071,18 +1072,18 @@ bool t_rpc_command_executor::stop_daemon()
   cryptonote::COMMAND_RPC_STOP_DAEMON::request req;
   cryptonote::COMMAND_RPC_STOP_DAEMON::response res;
 
-//# ifdef WIN32
-//    // Stop via service API
-//    // TODO - this is only temporary!  Get rid of hard-coded constants!
-//    bool ok = windows::stop_service("Ultrapoint Daemon");
-//    ok = windows::uninstall_service("Ultrapoint Daemon");
-//    //bool ok = windows::stop_service(SERVICE_NAME);
-//    //ok = windows::uninstall_service(SERVICE_NAME);
-//    if (ok)
-//    {
-//      return true;
-//    }
-//# endif
+  //# ifdef WIN32
+  //    // Stop via service API
+  //    // TODO - this is only temporary!  Get rid of hard-coded constants!
+  //    bool ok = windows::stop_service("Ultrapoint Daemon");
+  //    ok = windows::uninstall_service("Ultrapoint Daemon");
+  //    //bool ok = windows::stop_service(SERVICE_NAME);
+  //    //ok = windows::uninstall_service(SERVICE_NAME);
+  //    if (ok)
+  //    {
+  //      return true;
+  //    }
+  //# endif
 
   // Stop via RPC
   std::string fail_message = "Daemon did not stop";

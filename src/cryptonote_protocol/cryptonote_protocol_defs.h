@@ -68,11 +68,11 @@ namespace cryptonote
 
     uint64_t live_time;
 
-    uint64_t avg_download;
-    uint64_t current_download;
-    
-    uint64_t avg_upload;
-    uint64_t current_upload;
+	uint64_t avg_download;
+	uint64_t current_download;
+	
+	uint64_t avg_upload;
+	uint64_t current_upload;
   
 	uint32_t support_flags;
 
@@ -241,6 +241,50 @@ namespace cryptonote
         KV_SERIALIZE(total_height)
         KV_SERIALIZE(cumulative_difficulty)
         KV_SERIALIZE_CONTAINER_POD_AS_BLOB(m_block_ids)
+      END_KV_SERIALIZE_MAP()
+    };
+  };
+  
+  /************************************************************************/
+  /*                                                                      */
+  /************************************************************************/
+  struct NOTIFY_NEW_FLUFFY_BLOCK
+  {
+    const static int ID = BC_COMMANDS_POOL_BASE + 8;
+
+    struct request
+    {
+      block_complete_entry b;
+      uint64_t current_blockchain_height;
+      uint32_t hop;
+
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE(b)
+        KV_SERIALIZE(current_blockchain_height)
+        KV_SERIALIZE(hop)
+      END_KV_SERIALIZE_MAP()
+    };
+  };  
+
+  /************************************************************************/
+  /*                                                                      */
+  /************************************************************************/
+  struct NOTIFY_REQUEST_FLUFFY_MISSING_TX
+  {
+    const static int ID = BC_COMMANDS_POOL_BASE + 9;
+
+    struct request
+    {
+      crypto::hash block_hash;
+      uint64_t current_blockchain_height;      
+      std::vector<size_t> missing_tx_indices;
+      uint32_t hop;
+      
+      BEGIN_KV_SERIALIZE_MAP()
+        KV_SERIALIZE_VAL_POD_AS_BLOB(block_hash)
+        KV_SERIALIZE(current_blockchain_height)
+        KV_SERIALIZE_CONTAINER_POD_AS_BLOB(missing_tx_indices)
+        KV_SERIALIZE(hop)
       END_KV_SERIALIZE_MAP()
     };
   }; 
