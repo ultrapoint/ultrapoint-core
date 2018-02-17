@@ -704,8 +704,6 @@ namespace cryptonote
   //---------------------------------------------------------------
   bool get_transaction_hash(const transaction& t, crypto::hash& res, size_t* blob_size)
   {
-    return calculate_transaction_hash(t, res, blob_size);
-#if 0
     if (t.is_hash_valid())
     {
 #ifdef ENABLE_HASH_CASH_INTEGRITY_CHECK
@@ -736,7 +734,6 @@ namespace cryptonote
       t.set_blob_size_valid(true);
     }
     return true;
-#endif
   }
   //---------------------------------------------------------------
   bool get_transaction_hash(const transaction& t, crypto::hash& res, size_t& blob_size)
@@ -782,8 +779,6 @@ namespace cryptonote
   //---------------------------------------------------------------
   bool get_block_hash(const block& b, crypto::hash& res)
   {
-    return calculate_block_hash(b, res);
-#if 0
     if (b.is_hash_valid())
     {
 #ifdef ENABLE_HASH_CASH_INTEGRITY_CHECK
@@ -800,7 +795,6 @@ namespace cryptonote
     b.hash = res;
     b.set_hash_valid(true);
     return true;
-#endif
   }
   //---------------------------------------------------------------
   crypto::hash get_block_hash(const block& b)

@@ -1,6 +1,8 @@
 # Ultrapoint Core
 
-Copyright (c) 2017, The Ultrapoint Project
+Copyright (c) 2017-2018, The Ultrapoint Project
+Copyright (c) 2014-2017, The Monero Project
+Portions Copyright (c) 2012-2013, The Cryptonote developers
 
 ## Development Resources
 
@@ -53,6 +55,14 @@ The Monero donation address is: `42iXGr9Ms1FKxt1t8qLJdHRHVKvYMbgSxeRHNsNktjcpRyp
 
 See [LICENSE](LICENSE).
 
+# Contributing
+
+If you want to help out, see [CONTRIBUTING](CONTRIBUTING.md) for a set of guidelines.
+
+## Vulnerability Response Process
+
+See [Vulnerability Response Process](VULNERABILITY_RESPONSE_PROCESS.md).
+
 ## Ultrapoint software updates and consensus protocol changes (hard fork schedule)
 
 Ultrapoint uses a fixed-schedule hard fork mechanism to implement new features. This means that users of Ultrapoint (end users and service providers) need to run current versions and update their software on a regular schedule. Here is the current schedule, versions, and compatibility.
@@ -61,8 +71,8 @@ Dates are provided in the format YYYY-MM-DD.
 
 | Fork Date              | Consensus version | Minimum Ultrapoint Version | Recommended Ultrapoint Version | Details            |  
 | ----------------- | ----------------- | ---------------------- | -------------------------- | ------------------ |
-| 2017-07-04        | v5                | Not determined yet     | Not determined yet         | Adjusted minimum blocksize and fee algorithm      |
-| 2018-06-20        | v6                | Not determined yet     | Not determined yet         | Allow only RingCT transactions      |
+| 2018-06-xx        | v5                | Not determined yet     | Not determined yet         | Adjusted minimum blocksize and fee algorithm      |
+| 2018-08-xx        | v6                | Not determined yet     | Not determined yet         | Allow only RingCT transactions      |
 
 ## Installing Ultrapoint from a Package
 
@@ -71,10 +81,10 @@ Dates are provided in the format YYYY-MM-DD.
         docker build -t ultrapoint .
      
         # either run in foreground
-        docker run -it -v /ultrapoint/chain:/root/.ultrapoint -v /ultrapoint/wallet:/wallet -p 18080:18080 ultrapoint
+        docker run -it -v /ultrapoint/chain:/root/.ultrapoint -v /ultrapoint/wallet:/wallet -p 17099:17099 ultrapoint
 
         # or in background
-        docker run -it -d -v /ultrapoint/chain:/root/.ultrapoint -v /ultrapoint/wallet:/wallet -p 18080:18080 ultrapoint
+        docker run -it -d -v /ultrapoint/chain:/root/.ultrapoint -v /ultrapoint/wallet:/wallet -p 17099:17099 ultrapoint
 
 Packaging for your favorite distribution would be a welcome contribution!
 
@@ -153,7 +163,7 @@ invokes cmake commands as needed.
 
         HAVE_DOT=YES doxygen Doxyfile
 
-#### On the Raspberry Pi
+#### On the Raspberry Pi 2
 
 Tested on a Raspberry Pi 2 with a clean install of minimal Debian Jessie from https://www.raspberrypi.org/downloads/raspbian/
 
@@ -171,23 +181,23 @@ Tested on a Raspberry Pi 2 with a clean install of minimal Debian Jessie from ht
 * Install the latest version of boost (this may first require invoking `apt-get remove --purge libboost*` to remove a previous version if you're not using a clean install):
 ```
 	cd  
-	wget https://sourceforge.net/projects/boost/files/boost/1.62.0/boost_1_62_0.tar.bz2  
-	tar xvfo boost_1_62_0.tar.bz2  
-	cd boost_1_62_0  
+	wget https://sourceforge.net/projects/boost/files/boost/1.64.0/boost_1_64_0.tar.bz2  
+	tar xvfo boost_1_64_0.tar.bz2  
+	cd boost_1_64_0  
 	./bootstrap.sh  
 	sudo ./b2  
 ```
 * Wait ~8 hours
-
+```
 	sudo ./bjam install
-
+```
 * Wait ~4 hours
 
 * Change to the root of the source code directory and build:
-
+```
         cd ultrapoint-core
         make release
-
+```
 * Wait ~4 hours
 
 * The resulting executables can be found in `build/release/bin`
@@ -268,6 +278,15 @@ You will have to add the serialization, date_time, and regex modules to Boost wh
 
 To build: `env CC=egcc CXX=eg++ CPP=ecpp DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/path/to/the/boost/you/built make release-static-64`
 
+### On Linux for Android (using docker):
+
+        # Build image (select android64.Dockerfile for aarch64)
+        cd utils/build_scripts/ && docker build -f android32.Dockerfile -t monero-android .
+        # Create container
+        docker create -it --name monero-android monero-android bash
+        # Get binaries
+        docker cp monero-android:/opt/android/monero/build/release/bin .
+
 ### Building Portable Statically Linked Binaries
 
 By default, in either dynamically or statically linked builds, binaries target the specific host processor on which the build happens and are not portable to other processors. Portable binaries can be built using the following targets:
@@ -310,7 +329,7 @@ ultrapoint-wallet-cli, and possibly ultrapointd, if you get crashes refreshing.
 
 ## Internationalization
 
-See README.i18n
+See [README.i18n.md](README.i18n.md).
 
 ## Using Tor
 
@@ -337,10 +356,6 @@ While ultrapointd and ultrapoint-wallet-cli do not use readline directly, most o
 `rlwrap bin/ultrapoint-wallet-cli --wallet-file /path/to/wallet`
 
 Note: rlwrap will save things like your seed and private keys, if you supply them on prompt. You may want to not use rlwrap when you use simplewallet to restore from seed, etc.
-
-# Contributing
-
-If you want to help out, see CONTRIBUTING for a set of guidelines.
 
 # Debugging
 

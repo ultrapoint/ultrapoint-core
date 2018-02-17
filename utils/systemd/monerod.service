@@ -8,15 +8,10 @@ Group=ultrapoint
 WorkingDirectory=~
 
 Type=forking
-ExecStart=/usr/bin/ultrapointd --config-file /etc/ultrapointd.conf --detach
+PIDFile=/var/run/ultrapointd.pid
 
-# This is necessary because ultrapointd does not yet support
-# writing a PID file, which means systemd tries to guess the PID
-# by default, but it guesses wrong (sometimes, depending on
-# random timing of events), because the daemon forks twice.
-# The ultimate fix is for the daemon to write a PID file, and
-# a workaround is to disable the guessing feature in systemd.
-GuessMainPID=no
+ExecStart=/usr/bin/ultrapointd --config-file /etc/ultrapointd.conf \
+    --detach --pidfile /var/run/ultrapointd.pid
 
 [Install]
 WantedBy=multi-user.target
