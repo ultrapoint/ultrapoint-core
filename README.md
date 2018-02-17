@@ -281,11 +281,11 @@ To build: `env CC=egcc CXX=eg++ CPP=ecpp DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/pat
 ### On Linux for Android (using docker):
 
         # Build image (select android64.Dockerfile for aarch64)
-        cd utils/build_scripts/ && docker build -f android32.Dockerfile -t monero-android .
+        cd utils/build_scripts/ && docker build -f android32.Dockerfile -t ultrapoint-android .
         # Create container
-        docker create -it --name monero-android monero-android bash
+        docker create -it --name ultrapoint-android ultrapoint-android bash
         # Get binaries
-        docker cp monero-android:/opt/android/monero/build/release/bin .
+        docker cp ultrapoint-android:/opt/android/ultrapoint-core/build/release/bin .
 
 ### Building Portable Statically Linked Binaries
 

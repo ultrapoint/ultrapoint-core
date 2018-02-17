@@ -1578,6 +1578,7 @@ namespace Language
       "ulcero",
       "ulmo",
       "ultimato",
+      "ultrapoint",
       "ululi",
       "umbiliko",
       "unco",
