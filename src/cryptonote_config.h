@@ -56,6 +56,11 @@
 #define PREMINE_BLOCK_HEIGHT                            (32) // recommended to be < or = to `MONEY_SUPPLY / (MONEY_SUPPLY * 2^(- EMISSION_SPEED_FACTOR_PER_MINUTE))`
 #define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)5000000000) // 5 * pow(10, 9)
 
+#define BLOCK_HEIGHT_MAIN_HF_V2                         262800
+#define BLOCK_HEIGHT_TEST_HF_V2                         971400
+#define BLOCK_EPOCH_MAIN_HF_V2                          1523878800 // value is got when the hf have been applied on the associated starting block height
+#define BLOCK_EPOCH_TEST_HF_V2                          1501709789 // value is got when the hf have been applied on the associated starting block height
+
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2    60000 //size of block (bytes) after which reward for block calculated using block size
 #define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1    20000 //size of block (bytes) after which reward for block calculated using block size - before first fork
