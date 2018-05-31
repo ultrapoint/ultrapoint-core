@@ -5,7 +5,7 @@ function send_funds {
     local dest=$(cat "$2.address.txt")
 
     ultrapoint-wallet-cli --wallet-file wallet_m --password "" \
-        --testnet --trusted-daemon --daemon-address localhost:38081  --log-file wallet_m.log \
+        --testnet --trusted-daemon --daemon-address localhost:27090  --log-file wallet_m.log \
         --command transfer $dest $amount 
 }
 
